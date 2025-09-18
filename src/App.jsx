@@ -3,7 +3,6 @@ import Nav from './comp/Nav'
 import { BrowserRouter } from 'react-router-dom'
 import Rout from './comp/Rout'
 import ProductDetail from './comp/productDetail'
-import { Auth0Provider } from "@auth0/auth0-react";
 import Footer from './comp/Footer'
 import Swal from 'sweetalert2'
 
@@ -104,15 +103,6 @@ function App() {
   
   return (
     <>
-      <Auth0Provider
-        domain="dev-taskxgtxar4dsvfm.us.auth0.com"
-        clientId="pARfZprmrJDQw94i6jLTceLmPjc1pdKD"
-        authorizationParams={{
-          redirect_uri: window.location.origin
-        }}
-        cacheLocation="localstorage"
-        useRefreshTokens={true}
-      >
         <BrowserRouter>
           <Nav searchBtn={searchBtn} cart={cart}/>
           <Rout 
@@ -130,7 +120,6 @@ function App() {
           />
           <Footer/>
         </BrowserRouter>
-      </Auth0Provider>
     </>
   )
 }
