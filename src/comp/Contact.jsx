@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import Swal from 'sweetalert2'
-import { useAuth0 } from "@auth0/auth0-react";
 import './contact.css'
 
 function Contact() {
-    const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -84,7 +82,7 @@ function Contact() {
     e.preventDefault();
     const option ={
         method : 'POST',
-        Headers : {
+        headers : {
             'content-type' : 'application/json'
         },
         body : JSON.stringify({
@@ -216,14 +214,7 @@ function Contact() {
                   ></textarea>
                 </div>
 
-                {
-                    isAuthenticated ?
-                     <button type="submit" className="submit_btn" onClick={ senddata}>Send Message</button>
-                     :
-                      <button type="submit" className="submit_btn" onClick={() => loginWithRedirect()}>Login</button>
-                }
-
-               
+                <button type="submit" className="submit_btn" onClick={senddata}>Send Message</button>
               </form>
             </div>
           </div>
