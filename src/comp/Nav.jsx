@@ -1,4 +1,3 @@
-// Nav.jsx
 import React, { useState } from 'react'
 import { FaTruckMoving } from 'react-icons/fa';
 import { FaRegHeart } from "react-icons/fa";
@@ -6,13 +5,11 @@ import { IoBagCheckOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa6";
 import { IoLogInOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
-import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
 import './Nav.css'
 
 function Nav({searchBtn}) {
     const [Search , setSearch] = useState()
-    const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
     
     return (
         <>
@@ -26,7 +23,7 @@ function Nav({searchBtn}) {
             <div className='main_header'>
                 <div className='container'>
                     <div className='logo'>
-                        <img src='/logo.png' alt="Logo" /> {/* تصحيح مسار الصورة */}
+                        <img src='/logo.png' alt="Logo" />
                     </div>
                     
                     <div className='search_box'>
@@ -34,15 +31,6 @@ function Nav({searchBtn}) {
                         <button onClick={() => searchBtn(Search)} >Search</button>
                     </div>
                     <div className='main_header_icons'>
-                        {isAuthenticated && (
-                            <div className='account'>
-                                <div className='user_icon'>
-                                    <FaRegUser/>
-                                </div>
-                                <p>Hello, {user?.name}</p> {/* إضافة ? للتحقق من وجود user */}
-                            </div>
-                        )}
-                        
                         <div className='second_icon'>
                             <Link to="/wishlist" className='link' title="Wishlist">
                                 <FaRegHeart />
@@ -63,7 +51,7 @@ function Nav({searchBtn}) {
                                 <Link to='/' className='link'>Home</Link>
                             </li>
                             <li>
-                                <Link to='/product' className='link'>Products</Link> {/* تغيير إلى حروف صغيرة */}
+                                <Link to='/product' className='link'>Products</Link>
                             </li>
                             <li>
                                 <Link to='/about' className='link'>About</Link>
@@ -75,21 +63,9 @@ function Nav({searchBtn}) {
                     </div>
                     
                     <div className='auth'>
-                        {isAuthenticated ? (
-                            <button 
-                                onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} 
-                                title="Logout"
-                            >
-                                <CiLogout />
-                            </button>
-                        ) : (
-                            <button 
-                                onClick={() => loginWithRedirect()} 
-                                title="Login"
-                            >
-                                <IoLogInOutline />
-                            </button>
-                        )}
+                        <button title="Login">
+                            <IoLogInOutline />
+                        </button>
                     </div>
                 </div>
             </div>
